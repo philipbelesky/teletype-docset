@@ -3,7 +3,7 @@
 import os, re, sqlite3
 from bs4 import BeautifulSoup, NavigableString, Tag 
 
-conn = sqlite3.connect('postgresql.docset/Contents/Resources/docSet.dsidx')
+conn = sqlite3.connect('Teletype.docset/Contents/Resources/docSet.dsidx')
 cur = conn.cursor()
 
 try: cur.execute('DROP TABLE searchIndex;')
@@ -11,9 +11,9 @@ except: pass
 cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
 cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
-docpath = 'postgresql.docset/Contents/Resources/Documents'
+docpath = 'Teletype.docset/Contents/Resources/Documents'
 
-page = open(os.path.join(docpath,'bookindex.html')).read()
+page = open(os.path.join(docpath,'index.html')).read()
 soup = BeautifulSoup(page)
 
 any = re.compile('.*')
